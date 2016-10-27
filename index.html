@@ -1,7 +1,59 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script>
+  var text = '{"quotes":[' + '{"quote":"\\"Think big thoughts but relish small pleasures\\"","quotedName":"-H. Jackson Brown Jr." },' +
+'{"quote":"\\"If you cannot do great things, do small things in a great way\\"","quotedName":"-Napoleon Hill" },' +
+'{"quote":"\\"Every strike brings me closer to the next home run\\"","quotedName":"-Babe Ruth" },' +
+'{"quote":"\\"Never leave that till tomorrow which you can do today\\"","quotedName":"-Benjamin Franklin" },' +
+'{"quote":"\\"In the middle of adversity lies opportunity\\"","quotedName":"-Albert Einstein" },' +
+'{"quote":"\\"Dare to be remarkable\\"","quotedName":"-Jane Gentry" },' +
+'{"quote":"\\"All we have to fear is fear itself.\\"","quotedName":"-Franklin D. Roosevelt " },' +
+'{"quote":"\\"Always desire to learn something useful\\"","quotedName":"-Sophocles  " },' +
+'{"quote":"\\"You can\'t test courage cautiously\\"","quotedName":"-Annie Dillard  " },' +
+'{"quote":"\\"It\'s better to live one day as a lion than a hundred as a lamb\\"","quotedName":"-John Gotti  " },' +
+'{"quote":"\\"From a small seed a mighty trunk may grow\\"","quotedName":"-Aeschylus" }]}';
+var tweettext="Every strike brings me closer to the next home run";
+var tweetlink;
 
+function tweet(){
+window.open(tweetlink,"_self")
+}
+
+function changeQuote() {
+var sizequotes = 11; 
+var rand = Math.floor(Math.random()*sizequotes);
+var canvas = document.getElementById("myCanvas");
+tweetlink="https://twitter.com/intent/tweet?text="+obj.quotes[rand].quote+obj.quotes[rand].quotedName;
+     var context = canvas.getContext("2d");
+	 context.clearRect(0, 0, canvas.width, canvas.height);   
+	var imageObj = new Image();
+     imageObj.onload = function(){
+         context.drawImage(imageObj, 10, 10);
+         context.font = "16pt Calibri";
+		 context.fillText(obj.quotes[rand].quote, 80, 80);
+		 context.fillText(obj.quotes[rand].quotedName, 100, 300)
+     };
+     imageObj.src = "monitor-screen.png";
+}
+
+window.onload = function(){
+     
+obj = JSON.parse(text);
+     var canvas = document.getElementById("myCanvas");
+     var context = canvas.getContext("2d");
+     var imageObj = new Image();
+     imageObj.onload = function(){
+         context.drawImage(imageObj, 10, 10);
+         context.font = "16pt Calibri";
+         context.fillText(obj.quotes[2].quote, 80, 80);
+		 context.fillText(obj.quotes[2].quotedName, 100, 300);
+     };
+     imageObj.src = "monitor-screen.png"; 
+	 tweetlink="https://twitter.com/intent/tweet?text="+obj.quotes[2].quote+obj.quotes[2].quotedName;
+
+};
+</script>
 </head>
 <body>
 <button type="button" onclick="changeQuote()" id="controls">New Quote</button>
