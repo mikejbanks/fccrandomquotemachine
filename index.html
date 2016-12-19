@@ -19,7 +19,7 @@ var tweetlink;
 function tweet(){
 window.open(tweetlink,"_self")
 }
-
+/* Function changes the quote on the canvas by picking random quotes text*/    
 function changeQuote() {
 var sizequotes = 11; 
 var rand = Math.floor(Math.random()*sizequotes);
@@ -38,11 +38,12 @@ tweetlink="https://twitter.com/intent/tweet?text="+obj.quotes[rand].quote+obj.qu
 }
 
 window.onload = function(){
-     
+ 
 obj = JSON.parse(text);
      var canvas = document.getElementById("myCanvas");
      var context = canvas.getContext("2d");
      var imageObj = new Image();
+     /*Draws initial image, quote and author */
      imageObj.onload = function(){
          context.drawImage(imageObj, 10, 10);
          context.font = "16pt Calibri";
@@ -50,6 +51,7 @@ obj = JSON.parse(text);
 		 context.fillText(obj.quotes[2].quotedName, 100, 300);
      };
      imageObj.src = "monitor-screen.png"; 
+	/*Takes quote and author of quote and allows to tweet*/
 	 tweetlink="https://twitter.com/intent/tweet?text="+obj.quotes[2].quote+obj.quotes[2].quotedName;
 
 };
